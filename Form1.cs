@@ -43,7 +43,7 @@ namespace LatihanProjek01
                 if (role == "Admin")
                 {
                     MessageBox.Show("Login berhasil!\n\nSelamat Datang, Admin!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MenuAdmin Menunya = new();
+                    Formmenuadmin Menunya = new();
                     Menunya.Show();
                 }
                 else if (role == "Kasir")
@@ -97,6 +97,16 @@ namespace LatihanProjek01
         private void Username_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Sainin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Sainin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

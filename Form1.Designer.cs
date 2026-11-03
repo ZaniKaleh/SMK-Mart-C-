@@ -172,6 +172,8 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Sainin";
             Text = "Sign In";
+            FormClosed += Sainin_FormClosed;
+            Load += Sainin_Load;
             panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
