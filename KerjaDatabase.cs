@@ -210,5 +210,36 @@ namespace LatihanProjek01
             simpanstok(stok);
             return $"Barang berhasil ditambahkan! ID Barang: {idBaru}";
         }
+        public static bool HapusUser(string id)
+        {
+            string filenya = "User.txt";
+            if (!File.Exists(filenya))
+            {
+                return false;
+            }
+            List<string> dataUser = new();
+            bool ditemukan = false;
+            foreach (string baris in File.ReadAllLines(filenya))
+            {
+                if (string.IsNullOrWhiteSpace(baris))
+                {
+                    dataUser.Add(baris);
+                    continue;
+                }
+                string[] part = baris.Split('|');
+                if (part[0].Trim() == id.Trim())
+                {
+                    ditemukan=true;
+                    continue;
+                }
+                dataUser.Add(baris);
+            }
+            if (!ditemukan)
+            {
+                return false;
+            }
+            File.WriteAllLines(filenya, dataUser);
+            return true;
+        }
     }
 }

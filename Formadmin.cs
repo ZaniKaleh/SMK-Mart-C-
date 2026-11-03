@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 namespace LatihanProjek01
 {
     public partial class Formmenuadmin : Form
