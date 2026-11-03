@@ -64,7 +64,7 @@ namespace LatihanProjek01
                     string aidi=part[1].Trim();
                     string nama=part[2].Trim();
                     int stok_jml=int.Parse(part[3].Trim());
-                    long harga=int.Parse(part[4].Trim());
+                    long harga=long.Parse(part[4].Trim());
                     int stok_min=int.Parse(part[5].Trim());
 
                     int aktif = part.Length >= 7 ? int.Parse(part[6].Trim()) : 1;
@@ -131,12 +131,84 @@ namespace LatihanProjek01
                 }
             }
         }
-        public static string TambahBarang(string namaKategori, string inisialBaru, string namaBarang, int stokAwal, long harga, int stokMinimum)
+        public static string TambahBarang(bool kategoriBaru, string namaKategori, string inisialBaru, string namaBarang, int stokAwal, long harga, int stokMinimum)
         {
             namaKategori = namaKategori.Trim().ToLower();
             inisialBaru=inisialBaru.Trim().ToUpper();
             namaBarang = namaBarang.Trim();
-            if 
+            if (!File.Exists("Kategori.txt"))
+            {
+                return "File Kategori.txt tidak ditemukan!";
+            }
+            Dictionary<string, string> kategori = SpilKategori();
+            string inisial;
+
+            if (kategoriBaru)
+            {
+                if (kategori.ContainsKey(namaKategori))
+                {
+                    inisial = kategori[namaKategori];
+                }
+                else
+                {
+                    if (inisialBaru.Length == 0)
+                    {
+                        return "Inisial tidak boleh kosong!";
+                    }
+                    foreach(string kode in kategori.Values)
+                    {
+                        if (kode == inisialBaru)
+                        {
+                            return "Inisial tersebut sudah digunakan!";
+                        }
+                    }
+                    File.AppendAllText("Kategori.txt", $"{namaKategori}|{inisialBaru}|{Environment.NewLine}");
+                    inisial = inisialBaru;
+                }
+            }
+            else
+            {
+                if (!kategori.ContainsKey(namaKategori))
+                {
+                    return "Nama Kategori tidak valid/tidak terdaftar!";
+                }
+                inisial = kategori[namaKategori];
+            }
+            Dictionary<string, Dictionary<string, Barang>> stok = SpilStok("Admin");
+            int maksID = 0;
+            if (stok.ContainsKey(namaKategori))
+            {
+                foreach (string idLama in stok[namaKategori].Keys)
+                {
+                    if (idLama.Length <= inisial.Length)
+                    {
+                        continue;
+                    }
+                    string bagianAngka = idLama.Substring(inisial.Length);
+                    if (int.TryParse(bagianAngka, out int angka))
+                    {
+                        if (angka > maksID)
+                        {
+                            maksID = angka;
+                        }
+                    }
+                }
+            }
+            string idBaru = inisial + (maksID + 1).ToString("D3");
+            if (!stok.ContainsKey(namaKategori))
+            {
+                stok[namaKategori] = new Dictionary<string, Barang>();
+            }
+            stok[namaKategori][idBaru] = new Barang
+            {
+                NamaBarang = namaBarang,
+                Stok = stokAwal,
+                Harga = harga,
+                StokMinimum = stokMinimum,
+                Kondisi = 1
+            };
+            simpanstok(stok);
+            return $"Barang berhasil ditambahkan! ID Barang: {idBaru}";
         }
     }
 }
