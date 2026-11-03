@@ -39,11 +39,13 @@
             GkValid = new Label();
             PemilihanRole = new ComboBox();
             TeksPilihRole = new Label();
+            panel2 = new Panel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // Username
             // 
+            Username.BackColor = Color.Ivory;
             Username.BorderStyle = BorderStyle.FixedSingle;
             Username.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Username.Location = new Point(427, 231);
@@ -77,6 +79,7 @@
             // 
             // TitleSignIn
             // 
+            TitleSignIn.BackColor = Color.Ivory;
             TitleSignIn.Font = new Font("Tahoma", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             TitleSignIn.ForeColor = Color.DarkSlateGray;
             TitleSignIn.ImageAlign = ContentAlignment.MiddleLeft;
@@ -88,6 +91,7 @@
             // 
             // Password
             // 
+            Password.BackColor = Color.Ivory;
             Password.BorderStyle = BorderStyle.FixedSingle;
             Password.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Password.Location = new Point(427, 286);
@@ -115,18 +119,20 @@
             // 
             // LihatPass
             // 
+            LihatPass.BackColor = Color.Ivory;
             LihatPass.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LihatPass.Location = new Point(721, 286);
             LihatPass.Name = "LihatPass";
             LihatPass.Size = new Size(123, 35);
             LihatPass.TabIndex = 6;
             LihatPass.Text = "Lihat Password";
-            LihatPass.UseVisualStyleBackColor = true;
+            LihatPass.UseVisualStyleBackColor = false;
             LihatPass.CheckedChanged += LihatPass_CheckedChanged;
             // 
             // GkValid
             // 
             GkValid.AutoSize = true;
+            GkValid.BackColor = Color.Ivory;
             GkValid.ForeColor = Color.Red;
             GkValid.Location = new Point(427, 324);
             GkValid.Name = "GkValid";
@@ -137,6 +143,7 @@
             // 
             // PemilihanRole
             // 
+            PemilihanRole.BackColor = Color.Ivory;
             PemilihanRole.DropDownStyle = ComboBoxStyle.DropDownList;
             PemilihanRole.Font = new Font("Tahoma", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             PemilihanRole.FormattingEnabled = true;
@@ -149,11 +156,22 @@
             // TeksPilihRole
             // 
             TeksPilihRole.AutoSize = true;
+            TeksPilihRole.BackColor = Color.Ivory;
             TeksPilihRole.Location = new Point(427, 148);
             TeksPilihRole.Name = "TeksPilihRole";
             TeksPilihRole.Size = new Size(90, 15);
             TeksPilihRole.TabIndex = 9;
             TeksPilihRole.Text = "Pilih Role Anda!";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.Ivory;
+            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
+            panel2.Location = new Point(-54, -1);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1099, 625);
+            panel2.TabIndex = 10;
+            panel2.Paint += panel2_Paint;
             // 
             // Sainin
             // 
@@ -166,10 +184,12 @@
             Controls.Add(SignIn);
             Controls.Add(Password);
             Controls.Add(TitleSignIn);
-            Controls.Add(panel1);
             Controls.Add(Username);
+            Controls.Add(panel1);
+            Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "Sainin";
             Text = "Sign In";
             FormClosed += Sainin_FormClosed;
@@ -191,5 +211,6 @@
         private Label GkValid;
         private ComboBox PemilihanRole;
         private Label TeksPilihRole;
+        private Panel panel2;
     }
 }

@@ -65,7 +65,7 @@
             // 
             button1.BackColor = Color.FromArgb(128, 255, 128);
             button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Font = new Font("Segoe UI Black", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.Location = new Point(279, 110);
             button1.Margin = new Padding(2);
             button1.Name = "button1";
@@ -79,7 +79,7 @@
             // 
             button2.BackColor = Color.FromArgb(128, 255, 128);
             button2.FlatStyle = FlatStyle.Popup;
-            button2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.Font = new Font("Segoe UI Black", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.Location = new Point(279, 238);
             button2.Margin = new Padding(2);
             button2.Name = "button2";
@@ -92,7 +92,7 @@
             // 
             button3.BackColor = Color.FromArgb(128, 255, 128);
             button3.FlatStyle = FlatStyle.Popup;
-            button3.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.Font = new Font("Segoe UI Black", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button3.Location = new Point(279, 368);
             button3.Margin = new Padding(2);
             button3.Name = "button3";
@@ -130,8 +130,7 @@
             // 
             // Formmanajemenuser
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(192, 255, 192);
             ClientSize = new Size(1045, 624);
             Controls.Add(button4);
@@ -140,7 +139,9 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(2);
+            MaximizeBox = false;
             Name = "Formmanajemenuser";
             Text = "Formmanajemenuser";
             FormClosed += Formmanajemenuser_FormClosed;

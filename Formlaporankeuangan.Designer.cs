@@ -32,9 +32,9 @@
             textBox1 = new TextBox();
             panel2 = new Panel();
             panel3 = new Panel();
+            button4 = new Button();
             button1 = new Button();
             dateTimePicker1 = new DateTimePicker();
-            button4 = new Button();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
@@ -84,6 +84,19 @@
             panel3.Size = new Size(1048, 431);
             panel3.TabIndex = 1;
             // 
+            // button4
+            // 
+            button4.BackColor = Color.Red;
+            button4.FlatStyle = FlatStyle.Popup;
+            button4.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button4.Location = new Point(14, 379);
+            button4.Name = "button4";
+            button4.Size = new Size(114, 46);
+            button4.TabIndex = 6;
+            button4.Text = "Kembali";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
             // button1
             // 
             button1.BackColor = Color.FromArgb(192, 255, 255);
@@ -107,28 +120,16 @@
             dateTimePicker1.Size = new Size(271, 43);
             dateTimePicker1.TabIndex = 0;
             // 
-            // button4
-            // 
-            button4.BackColor = Color.Red;
-            button4.FlatStyle = FlatStyle.Popup;
-            button4.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.Location = new Point(14, 379);
-            button4.Name = "button4";
-            button4.Size = new Size(114, 46);
-            button4.TabIndex = 6;
-            button4.Text = "Kembali";
-            button4.UseVisualStyleBackColor = false;
-            button4.Click += button4_Click;
-            // 
             // Formlaporankeuangan
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(1045, 624);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(2);
+            MaximizeBox = false;
             Name = "Formlaporankeuangan";
             Text = "Formlaporankeuangan";
             FormClosed += Formlaporankeuangan_FormClosed;

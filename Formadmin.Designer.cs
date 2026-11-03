@@ -191,17 +191,17 @@
             // 
             // Formmenuadmin
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(192, 255, 192);
             ClientSize = new Size(1045, 624);
             Controls.Add(panel1);
             Controls.Add(panel2);
             Controls.Add(btnkeluarpaneladmin);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(2);
+            MaximizeBox = false;
             Name = "Formmenuadmin";
             Text = "Form1";
-            WindowState = FormWindowState.Maximized;
             FormClosed += Formmenuadmin_FormClosed;
             Load += Formmenuadmin_Load;
             panel1.ResumeLayout(false);
