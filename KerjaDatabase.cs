@@ -16,10 +16,15 @@ namespace LatihanProjek01
 
     public class KerjaDatabase
     {
+        public static string AmbilPathFile(string namaFile)
+        {
+            string folderProject = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\.."));
+            return Path.Combine(folderProject, namaFile);
+        }
         public static List<string[]> SpilUser()
         {
             List<string[]>users= new();
-            string Fileuser="User.txt";
+            string Fileuser=AmbilPathFile("User.txt");
             if (File.Exists(Fileuser))
             {
                 string[] datauser= File.ReadAllLines(Fileuser);
@@ -51,7 +56,7 @@ namespace LatihanProjek01
         public static Dictionary<string, Dictionary<string, Barang>> SpilStok(string Job)
         {
             Dictionary<string, Dictionary<string, Barang>> stok = new();
-            string Filestoknya = "Stok.txt";
+            string Filestoknya = AmbilPathFile("Stok.txt");
             if (File.Exists(Filestoknya))
             {
                 string[] datanya=File.ReadAllLines(Filestoknya);
@@ -91,7 +96,7 @@ namespace LatihanProjek01
         public static Dictionary<string, string> SpilKategori()
         {
             Dictionary<string, string> kategori = new Dictionary<string, string>();
-            string filekategorinya = "Kategori.txt";
+            string filekategorinya = AmbilPathFile("Kategori.txt");
             if (File.Exists(filekategorinya))
             {
                 string[] datakategorinya=File.ReadAllLines(filekategorinya);
@@ -119,13 +124,13 @@ namespace LatihanProjek01
         }
         public static void simpanstok(Dictionary<string, Dictionary<string, Barang>> data)
         {
-            using (StreamWriter file = new StreamWriter("Stok.txt"))
+            using (StreamWriter file = new StreamWriter(AmbilPathFile("Stok.txt")))
             {
                 foreach (var kategori in data)
                 {
                     foreach (var barang in kategori.Value)
                     {
-                        Barang detail=barang.Value;
+                        Barang detail = barang.Value;
                         file.WriteLine($"{kategori.Key}|{barang.Key}|{detail.NamaBarang}|{detail.Stok}|{detail.Harga}|{detail.StokMinimum}|{detail.Kondisi}");
                     }
                 }
@@ -136,7 +141,8 @@ namespace LatihanProjek01
             namaKategori = namaKategori.Trim().ToLower();
             inisialBaru=inisialBaru.Trim().ToUpper();
             namaBarang = namaBarang.Trim();
-            if (!File.Exists("Kategori.txt"))
+            string pathKategori = AmbilPathFile("Kategori.txt");
+            if (!File.Exists(pathKategori))
             {
                 return "File Kategori.txt tidak ditemukan!";
             }
@@ -162,7 +168,7 @@ namespace LatihanProjek01
                             return "Inisial tersebut sudah digunakan!";
                         }
                     }
-                    File.AppendAllText("Kategori.txt", $"{namaKategori}|{inisialBaru}|{Environment.NewLine}");
+                    File.AppendAllText(pathKategori, $"{namaKategori}|{inisialBaru}|{Environment.NewLine}");
                     inisial = inisialBaru;
                 }
             }
@@ -212,7 +218,7 @@ namespace LatihanProjek01
         }
         public static bool HapusUser(string id)
         {
-            string filenya = "User.txt";
+            string filenya = AmbilPathFile("User.txt");
             if (!File.Exists(filenya))
             {
                 return false;
