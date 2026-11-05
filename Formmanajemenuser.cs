@@ -71,7 +71,7 @@ namespace LatihanProjek01
             if (string.IsNullOrWhiteSpace(id))
             {
                 MessageBox.Show("ID User tidak valid!");
-                return ;
+                return;
             }
             DialogResult pilihan = MessageBox.Show($"Yakin ingin menghapus user {id}?", "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (pilihan == DialogResult.Yes)
@@ -85,6 +85,12 @@ namespace LatihanProjek01
                     MessageBox.Show("User gagal ditemukan!");
                 }
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            TambahUser siguma = new TambahUser();
+            siguma.Show();
         }
     }
 }

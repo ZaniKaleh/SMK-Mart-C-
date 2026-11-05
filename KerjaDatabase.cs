@@ -247,5 +247,55 @@ namespace LatihanProjek01
             File.WriteAllLines(filenya, dataUser);
             return true;
         }
+        public static string TambahUser(string username, string password, string role, out string idbaru)
+        {
+            idbaru = "";
+            username = username.Trim();
+            password=password.Trim();
+            role= role.Trim();
+
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(role))
+            {
+                return "Semua kolom harus diisi!";
+            }
+            if (username.Contains("|") || password.Contains("|"))
+            {
+                return "Nama dan Password tidak boleh mengandung '|'";
+            }
+            string path = AmbilPathFile("User.txt");
+            List<string[]> users = SpilUser();
+            bool already;
+            do
+            {
+                idbaru = Random.Shared.Next(100000, 1000000).ToString();
+                already = false;
+
+                foreach (string[] user in users)
+                {
+                    if (user[0].Trim() == idbaru)
+                    {
+                        already = true;
+                        break;
+                    }
+                }
+            } while (already);
+            string isiFile = File.Exists(path)
+                ? File.ReadAllText(path)
+                : "";
+
+            string newlineAwal = "";
+
+            if (isiFile.Length > 0 &&
+                !isiFile.EndsWith("\n") &&
+                !isiFile.EndsWith("\r"))
+            {
+                newlineAwal = Environment.NewLine;
+            }
+
+            File.AppendAllText(
+                path,
+                $"{newlineAwal}{idbaru}|{username}|{role}|{password}|1{Environment.NewLine}"
+            ); return "User berhasil ditambahkan!";
+        }
     }
 }

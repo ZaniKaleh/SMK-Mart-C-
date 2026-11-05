@@ -120,6 +120,7 @@
             button5.TabIndex = 6;
             button5.Text = "Tambah User";
             button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // dataGridView1
             // 
