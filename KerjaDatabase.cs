@@ -61,7 +61,7 @@ namespace LatihanProjek01
                 }
                 else
                 {
-                    MessageBox.Show("Login gagal! Username atau Password tidak valid!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tumbal = "Gagal";
                 }
             }
             return tumbal;
