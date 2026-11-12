@@ -31,35 +31,30 @@ namespace LatihanProjek01
         {
             string username = Username.Text;
             string password = Password.Text;
-            string role = PemilihanRole.Text;
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(role))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Mohon isi semua kolom!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            bool hasil = KerjaDatabase.Login(username, password, role);
-            if (hasil)
+            string hasil = KerjaDatabase.Login(username, password);
+            if (hasil == "YaAdmin")
             {
-                if (role == "Admin")
-                {
-                    MessageBox.Show("Login berhasil!\n\nSelamat Datang, Admin!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Formmenuadmin Menunya = new();
-                    Menunya.Show();
-                }
-                else if (role == "Kasir")
-                {
-                    MessageBox.Show("Login berhasil!\n\nSelamat Datang, Kasir!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else if (role == "Pengelola Gudang")
-                {
-                    MessageBox.Show("Login berhasil!\n\nSelamat Datang, Pengelola Gudang!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                this.Hide();
+                MenuAdmin ituAdmin = new();
+                ituAdmin.Show();
             }
-            else
+            else if (hasil == "Gagal")
             {
-                GkValid.Visible = true;
+                MessageBox.Show("Login gagal! Username atau Password tidak valid!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else if (hasil == "YaKasir")
+            {
+
+            }
+            else if (hasil == "YaGudang")
+            {
+
+            }
+            this.Hide();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

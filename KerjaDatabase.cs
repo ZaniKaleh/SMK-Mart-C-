@@ -41,17 +41,30 @@ namespace LatihanProjek01
             }
             return users;
         }
-        public static bool Login(string username, string password, string role)
+        public static string Login(string username, string password)
         {
             List<string[]> loginkan = SpilUser();
+            string tumbal = "";
             foreach (string[] detailuser in loginkan)
             {
-                if (detailuser[1].Trim()==username && detailuser[3].Trim()==password && detailuser[2].Trim()==role)
+                if (detailuser[1].Trim()==username && detailuser[3].Trim()==password && detailuser[2].Trim()=="ADMIN")
                 {
-                    return true;
+                    tumbal = "YaAdmin";
+                }
+                else if (detailuser[1].Trim()==username &&detailuser[3].Trim()==password && detailuser[2].Trim() == "KASIR")
+                {
+                    tumbal = "YaKasir";
+                }
+                else if(detailuser[1].Trim()==username && detailuser[3].Trim() == password && detailuser[2].Trim()=="PENGELOLA GUDANG")
+                {
+                    tumbal = "YaGudang";
+                }
+                else
+                {
+                    MessageBox.Show("Login gagal! Username atau Password tidak valid!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            return false;
+            return tumbal;
         }
         public static Dictionary<string, Dictionary<string, Barang>> SpilStok(string Job)
         {
